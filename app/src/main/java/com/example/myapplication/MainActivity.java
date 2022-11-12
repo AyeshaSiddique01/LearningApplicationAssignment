@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -22,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
             "Whom do we worship?",
             "In which city the Holy Kabah is?",
             "Who feeds us?"};
-
     public String[][] options = {{"Hazrat Muhammad(PBUH)", "Hazrat Adam(AS)", "Hazrat Ibrahim(AS)", "Hazrat Isma’il"},
             {"Hazrat Muhammad(PBUH)", "Hazrat Adam(AS)", "Hazrat Ibrahim(AS)", "Hazrat Isma’il"},
             {"Islam", "Christianity", "Judaism", "Hinduism"},
@@ -60,7 +60,46 @@ public class MainActivity extends AppCompatActivity {
         OptionTextC = findViewById(R.id.OptionCText);
         OptionTextD = findViewById(R.id.OptionDText);
 
-
+        DisplayQuestion();
     }
+
+    private void DisplayQuestion() {
+        Random rnd = new Random();
+        QuestionNo = rnd.nextInt(11);
+        if (!QuestionDone.contains(QuestionNo)){
+            QuestionDone.add(QuestionNo);
+            QuestionTField.setText(Questions[QuestionNo]);
+            OptionTextA.setText(options[QuestionNo][0]);
+            OptionTextB.setText(options[QuestionNo][1]);
+            OptionTextC.setText(options[QuestionNo][2]);
+            OptionTextD.setText(options[QuestionNo][3]);
+
+            switch (QuestionNo) {
+                case 1:
+                case 4:
+                case 3:
+                    answer = "A";
+                    break;
+                case 2:
+                case 11:
+                case 10:
+                case 9:
+                    answer = "B";
+                    break;
+                case 5:
+                case 8:
+                    answer = "C";
+                    break;
+                case 6:
+                case 7:
+                    answer = "D";
+                    break;
+            }
+
+        }
+        else DisplayQuestion();
+    }
+
+
 
 }
