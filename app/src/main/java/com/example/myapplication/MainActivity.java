@@ -133,12 +133,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void WrongAnswer() {
         WrongCount++;
         Result.setText("No, " + answerString);
-        ResultRecord.setText("Total:11\nAttempted:"+ QuestionDone.size() +"\nCorrect:"+ CorrectCount +"\nWrong:" + WrongCount);
+        ResultRecord.setText("Attempted: "+ QuestionDone.size() +"  Correct: "+ CorrectCount +"  Wrong: " + WrongCount);
     }
     private void CorrectAnswer() {
         CorrectCount++;
         Result.setText("Yes, " + answerString);
-        ResultRecord.setText("Total:11\nAttempted:"+ QuestionDone.size() +"\nCorrect:"+ CorrectCount +"\nWrong:" + WrongCount);
+        ResultRecord.setText("Attempted: "+ QuestionDone.size() +"  Correct: "+ CorrectCount +"  Wrong: " + WrongCount);
     }
 }
 
