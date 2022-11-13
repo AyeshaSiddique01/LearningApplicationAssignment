@@ -10,21 +10,22 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    String [] Questions = {"Who is the last Prophet of Allah?",
-            "Who is the First Prophet of Allah?",
-            "What is our Religion?",
-            "How many Allah?",
-            "Where is Allah?",
-            "How many prayers we offer in a day?",
-            "In which month Muslims keep fast?",
-            "How many eids we enjoy in a year?",
-            "Whom do we worship?",
-            "In which city the Holy Kabah is?",
-            "Who feeds us?"};
-    public String[][] options = {{"Hazrat Muhammad(PBUH)", "Hazrat Adam(AS)", "Hazrat Ibrahim(AS)", "Hazrat Isma’il"},
-            {"Hazrat Muhammad(PBUH)", "Hazrat Adam(AS)", "Hazrat Ibrahim(AS)", "Hazrat Isma’il"},
+    String [] Questions = {"Q- Who is the last Prophet of Allah?",
+            "Q- Who is the First Prophet of Allah?",
+            "Q- What is our Religion?",
+            "Q- How many Allah?",
+            "Q- Where is Allah?",
+            "Q- How many prayers we offer in a day?",
+            "Q- In which month Muslims keep fast?",
+            "Q- How many Eids we enjoy in a year?",
+            "Q- Whom do we worship?",
+            "Q- In which city the Holy Kabah is?",
+            "Q- Who feeds us?"};
+
+    public String[][] options = {{"Hazrat Adam(AS)","Hazrat Muhammad(PBUH)", "Hazrat Ibrahim(AS)", "Hazrat Isma’il(AS)"},
+            {"Hazrat Adam(AS)", "Hazrat Muhammad(PBUH)", "Hazrat Ibrahim(AS)", "Hazrat Isma’il(AS)"},
             {"Islam", "Christianity", "Judaism", "Hinduism"},
             {"One", "Two", "Three", "Four"},
             {"Sky", "Land", "Mountains", "EveryWhere"},
@@ -37,10 +38,10 @@ public class MainActivity extends AppCompatActivity {
 
     Button OptionA, OptionB, OptionC, OptionD;
     TextView QuestionTField, Result, ResultRecord,
-    OptionTextA, OptionTextB, OptionTextC, OptionTextD;
+            OptionTextA, OptionTextB, OptionTextC, OptionTextD;
 
-    int QuestionNo, AttemptedCount = 0, WrongCount = 0, CorrectCount = 0;
-    String answer = "";
+    int QuestionNo, WrongCount = 0, CorrectCount = 0;
+    String answer = "", answerString = "";
     ArrayList<Integer> QuestionDone = new ArrayList<Integer>(11);
 
     @Override
@@ -52,9 +53,13 @@ public class MainActivity extends AppCompatActivity {
         Result = findViewById(R.id.Result);
         ResultRecord = findViewById(R.id.ResultRecord);
         OptionA = findViewById(R.id.OptionA);
+        OptionA.setOnClickListener(this);
         OptionB = findViewById(R.id.OptionB);
+        OptionB.setOnClickListener(this);
         OptionC = findViewById(R.id.OptionC);
+        OptionC.setOnClickListener(this);
         OptionD = findViewById(R.id.OptionD);
+        OptionD.setOnClickListener(this);
         OptionTextA = findViewById(R.id.OptionAText);
         OptionTextB = findViewById(R.id.OptionBText);
         OptionTextC = findViewById(R.id.OptionCText);
@@ -62,7 +67,37 @@ public class MainActivity extends AppCompatActivity {
 
         DisplayQuestion();
     }
-
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.OptionA:
+                if (answer == "A")
+                    CorrectAnswer();
+                else
+                    WrongAnswer();
+                break;
+            case R.id.OptionB:
+                if (answer == "B")
+                    CorrectAnswer();
+                else
+                    WrongAnswer();
+                break;
+            case R.id.OptionC:
+                if (answer == "C")
+                    CorrectAnswer();
+                else
+                    WrongAnswer();
+                break;
+            case R.id.OptionD:
+                if (answer == "D")
+                    CorrectAnswer();
+                else
+                    WrongAnswer();
+                break;
+        }
+        if (QuestionDone.size() < 11)
+            DisplayQuestion();
+    }
     private void DisplayQuestion() {
         Random rnd = new Random();
         QuestionNo = rnd.nextInt(11);
@@ -74,32 +109,37 @@ public class MainActivity extends AppCompatActivity {
             OptionTextC.setText(options[QuestionNo][2]);
             OptionTextD.setText(options[QuestionNo][3]);
 
-            switch (QuestionNo) {
-                case 1:
-                case 4:
-                case 3:
-                    answer = "A";
-                    break;
-                case 2:
-                case 11:
-                case 10:
-                case 9:
-                    answer = "B";
-                    break;
-                case 5:
-                case 8:
-                    answer = "C";
-                    break;
-                case 6:
-                case 7:
-                    answer = "D";
-                    break;
+            if (QuestionNo == 1 || QuestionNo == 2 || QuestionNo == 3) {
+                answer = "A";
+                answerString = options[QuestionNo][0] + " is correct answer";
             }
-
+            else if (QuestionNo == 0 || QuestionNo == 10 || QuestionNo == 9 || QuestionNo == 8){
+                answer = "B";
+                answerString = options[QuestionNo][1] + " is correct answer";
+            }
+            else if (QuestionNo == 7) {
+                answer = "C";
+                answerString = options[QuestionNo][2] + " is correct answer";
+            }
+            else if (QuestionNo == 4 || QuestionNo == 5 || QuestionNo == 6) {
+                answer = "D";
+                answerString = options[QuestionNo][3] + " is correct answer";
+            }
         }
-        else DisplayQuestion();
+        else {
+            DisplayQuestion();
+        }
     }
-
-
-
+    private void WrongAnswer() {
+        WrongCount++;
+        Result.setText("No, " + answerString);
+        ResultRecord.setText("Total:11\nAttempted:"+ QuestionDone.size() +"\nCorrect:"+ CorrectCount +"\nWrong:" + WrongCount);
+    }
+    private void CorrectAnswer() {
+        CorrectCount++;
+        Result.setText("Yes, " + answerString);
+        ResultRecord.setText("Total:11\nAttempted:"+ QuestionDone.size() +"\nCorrect:"+ CorrectCount +"\nWrong:" + WrongCount);
+    }
 }
+
+
