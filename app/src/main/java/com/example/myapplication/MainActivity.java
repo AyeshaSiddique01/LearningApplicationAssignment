@@ -69,7 +69,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+        if (QuestionDone.size() < 11){
+        switch (view.getId()) {
             case R.id.OptionA:
                 if (answer == "A")
                     CorrectAnswer();
@@ -95,8 +96,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     WrongAnswer();
                 break;
         }
-        if (QuestionDone.size() < 11)
-            DisplayQuestion();
+
+        DisplayQuestion();
+    }
     }
     private void DisplayQuestion() {
         Random rnd = new Random();

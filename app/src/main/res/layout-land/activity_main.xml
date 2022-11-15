@@ -50,11 +50,10 @@
         android:id="@+id/OptionA"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
         android:backgroundTint="#2D7069"
         android:text="A"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/QuestionField" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
     <Button
