@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,9 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView QuestionTField, Result, ResultRecord,
             OptionTextA, OptionTextB, OptionTextC, OptionTextD;
 
-    int QuestionNo, WrongCount = 0, CorrectCount = 0;
-    String answer = "", answerString = "";
-    ArrayList<Integer> QuestionDone = new ArrayList<Integer>(11);
+    int QuestionNo, WrongCount = 0, CorrectCount = 0, status = 0;
+    String answer = "", answerString = "", inputAnswer="";
+    ArrayList<Integer> QuestionDone = new ArrayList<>(11);
+    DbHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,39 +66,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         OptionTextB = findViewById(R.id.OptionBText);
         OptionTextC = findViewById(R.id.OptionCText);
         OptionTextD = findViewById(R.id.OptionDText);
-
+        //Db handler
+        db = new DbHelper(this);
         DisplayQuestion();
     }
     @Override
     public void onClick(View view) {
-        if (QuestionDone.size() < 11){
+        if (QuestionDone.size() == 11){
+            Intent intent = new Intent(MainActivity.this, results_activity.class);
+            startActivity(intent);
+        }
+        else if (QuestionDone.size() < 11){
         switch (view.getId()) {
             case R.id.OptionA:
+                inputAnswer = options[QuestionNo][0];
                 if (answer == "A")
                     CorrectAnswer();
                 else
                     WrongAnswer();
                 break;
             case R.id.OptionB:
+                inputAnswer = options[QuestionNo][1];
                 if (answer == "B")
                     CorrectAnswer();
                 else
                     WrongAnswer();
                 break;
             case R.id.OptionC:
+                inputAnswer = options[QuestionNo][2];
                 if (answer == "C")
                     CorrectAnswer();
                 else
                     WrongAnswer();
                 break;
             case R.id.OptionD:
+                inputAnswer = options[QuestionNo][3];
                 if (answer == "D")
                     CorrectAnswer();
                 else
                     WrongAnswer();
                 break;
         }
-
+        db.AddQuestion(new Question(Questions[QuestionNo], answerString, inputAnswer, status));
         DisplayQuestion();
     }
     }
@@ -113,19 +124,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             if (QuestionNo == 1 || QuestionNo == 2 || QuestionNo == 3) {
                 answer = "A";
-                answerString = options[QuestionNo][0] + " is correct answer";
+                answerString = options[QuestionNo][0];
             }
             else if (QuestionNo == 0 || QuestionNo == 10 || QuestionNo == 9 || QuestionNo == 8){
                 answer = "B";
-                answerString = options[QuestionNo][1] + " is correct answer";
+                answerString = options[QuestionNo][1];
             }
             else if (QuestionNo == 7) {
                 answer = "C";
-                answerString = options[QuestionNo][2] + " is correct answer";
+                answerString = options[QuestionNo][2];
             }
             else if (QuestionNo == 4 || QuestionNo == 5 || QuestionNo == 6) {
                 answer = "D";
-                answerString = options[QuestionNo][3] + " is correct answer";
+                answerString = options[QuestionNo][3];
             }
         }
         else {
@@ -134,12 +145,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     private void WrongAnswer() {
         WrongCount++;
-        Result.setText("No, " + answerString);
+        status = 0;
+        Result.setText("No, " + answerString + " is correct answer");
         ResultRecord.setText("Attempted: "+ QuestionDone.size() +"  Correct: "+ CorrectCount +"  Wrong: " + WrongCount);
     }
     private void CorrectAnswer() {
+        status = 1;
         CorrectCount++;
-        Result.setText("Yes, " + answerString);
+        Result.setText("Yes, " + answerString + " is correct answer");
         ResultRecord.setText("Attempted: "+ QuestionDone.size() +"  Correct: "+ CorrectCount +"  Wrong: " + WrongCount);
     }
 }
