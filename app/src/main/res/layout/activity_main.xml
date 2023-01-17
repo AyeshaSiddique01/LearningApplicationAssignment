@@ -155,4 +155,15 @@
         app:layout_constraintTop_toBottomOf="@+id/titleText"
         tools:ignore="MissingConstraints" />
 
+    <Button
+        android:id="@+id/goRepoBtnMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="20dp"
+        android:backgroundTint="#1E5762"
+        android:text="Go To Repository"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ResultRecord" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

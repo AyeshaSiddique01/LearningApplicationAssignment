@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,13 +17,14 @@ public class results_activity extends AppCompatActivity {
     ListView listView;
     Button goRepository;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
         Intent intent = getIntent();
         listView = findViewById(R.id.Results);
-        goRepository = findViewById(R.id.goRepoBtn);
+        goRepository = findViewById(R.id.goRepoBtnMain);
 
         DbHelper db = new DbHelper(this);
         ArrayList<String> arrayList = db.getResult();

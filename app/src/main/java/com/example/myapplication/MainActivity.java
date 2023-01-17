@@ -2,7 +2,9 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {"Madina", "Makkah", "Karbala", "Palestine"},
             {"Father", "Allah", "Mother", "Grand Father"}};
 
-    Button OptionA, OptionB, OptionC, OptionD;
+    Button OptionA, OptionB, OptionC, OptionD, goRepository;
     TextView QuestionTField, Result, ResultRecord,
             OptionTextA, OptionTextB, OptionTextC, OptionTextD;
 
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     ArrayList<Integer> QuestionDone = new ArrayList<>(11);
     DbHelper db;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,9 +69,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         OptionTextB = findViewById(R.id.OptionBText);
         OptionTextC = findViewById(R.id.OptionCText);
         OptionTextD = findViewById(R.id.OptionDText);
+        goRepository = findViewById(R.id.goRepoBtnMain);
         //Db handler
         db = new DbHelper(this);
         DisplayQuestion();
+        goRepository.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri webpage = Uri.parse("https://github.com/AyeshaSiddique01/LearningApplicationAssignment/commits/main");
+                Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public void onClick(View view) {
