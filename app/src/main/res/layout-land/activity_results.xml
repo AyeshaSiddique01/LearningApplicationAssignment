@@ -36,17 +36,17 @@
 
     <ListView
         android:id="@+id/Results"
-        android:layout_width="408dp"
-        android:layout_height="497dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="669dp"
+        android:layout_height="169dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
         android:id="@+id/goRepoBtnMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="24dp"
         android:backgroundTint="#1E5762"
         android:text="Go To Repository"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -57,7 +57,7 @@
         android:id="@+id/sharebtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="3dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#1E5762"
         android:text="Share via  Whatsapp"
         app:layout_constraintBottom_toBottomOf="@+id/goRepoBtnMain"

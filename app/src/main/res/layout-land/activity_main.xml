@@ -38,32 +38,33 @@
         android:id="@+id/ResultRecord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
         android:text="Attempted: 0  Correct: 0  Wrong: 0"
         android:textColor="@color/white"
         android:textSize="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Result" />
+        app:layout_constraintTop_toBottomOf="@+id/OptionD" />
+
 
     <Button
         android:id="@+id/OptionA"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:backgroundTint="#2D7069"
         android:text="A"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
-
     <Button
         android:id="@+id/OptionB"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#2D7069"
         android:text="B"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/OptionA"
         app:layout_constraintTop_toBottomOf="@+id/OptionA"
         tools:ignore="MissingConstraints" />
 
@@ -71,27 +72,28 @@
         android:id="@+id/OptionC"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#2D7069"
         android:text="C"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/OptionB"
         app:layout_constraintTop_toBottomOf="@+id/OptionB" />
 
     <Button
         android:id="@+id/OptionD"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:backgroundTint="#2D7069"
         android:text="D"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/OptionC"
         app:layout_constraintTop_toBottomOf="@+id/OptionC" />
 
     <TextView
         android:id="@+id/OptionAText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textSize="25dp"
         app:layout_constraintStart_toEndOf="@+id/OptionA"
@@ -101,34 +103,34 @@
         android:id="@+id/OptionBText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textSize="25dp"
         app:layout_constraintStart_toEndOf="@+id/OptionB"
-        app:layout_constraintTop_toBottomOf="@+id/OptionAText" />
+        app:layout_constraintTop_toTopOf="@+id/OptionB" />
 
     <TextView
         android:id="@+id/OptionCText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textSize="25dp"
         app:layout_constraintStart_toEndOf="@+id/OptionC"
-        app:layout_constraintTop_toBottomOf="@+id/OptionBText" />
+        app:layout_constraintTop_toTopOf="@+id/OptionC" />
 
     <TextView
         android:id="@+id/OptionDText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/white"
         android:textSize="25dp"
         app:layout_constraintStart_toEndOf="@+id/OptionD"
-        app:layout_constraintTop_toBottomOf="@+id/OptionCText" />
+        app:layout_constraintTop_toTopOf="@+id/OptionD" />
 
     <TextView
         android:id="@+id/Result"
@@ -153,5 +155,15 @@
         app:layout_constraintStart_toStartOf="@+id/titleText"
         app:layout_constraintTop_toBottomOf="@+id/titleText"
         tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/goRepoBtnMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:backgroundTint="#1E5762"
+        android:text="Go To Repository"
+        app:layout_constraintStart_toEndOf="@+id/ResultRecord"
+        app:layout_constraintTop_toTopOf="@+id/ResultRecord" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
